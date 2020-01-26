@@ -1,0 +1,84 @@
+import React from "react"
+import { graphql } from "gatsby"
+import ProjectLayout from "../Layouts/ProjectLayout"
+import Seo from "../components/seo"
+
+export default function Project({ data }) {
+  return (
+    <div>
+      <Seo title="About" />
+      <ProjectLayout data={data} />
+    </div>
+  )
+}
+
+export const query = graphql`
+  query($slug: String, $cat: String) {
+    sanityProject(slug: { current: { eq: $slug } }) {
+      title
+      descriptionTitle
+      description
+      mainImage {
+        asset {
+          fixed(height: 1080, width: 1940) {
+            ...GatsbySanityImageFixed
+          }
+        }
+      }
+      image1 {
+        asset {
+          fluid {
+            ...GatsbySanityImageFluid
+          }
+        }
+      }
+      image2 {
+        asset {
+          fluid {
+            ...GatsbySanityImageFluid
+          }
+        }
+      }
+      image3 {
+        asset {
+          fluid {
+            ...GatsbySanityImageFluid
+          }
+        }
+      }
+      image4 {
+        asset {
+          fluid {
+            ...GatsbySanityImageFluid
+          }
+        }
+      }
+      image5 {
+        asset {
+          fluid {
+            ...GatsbySanityImageFluid
+          }
+        }
+      }
+      image6 {
+        asset {
+          fluid {
+            ...GatsbySanityImageFluid
+          }
+        }
+      }
+    }
+    allSanityProject(
+      filter: { categories: { elemMatch: { title: { eq: $cat } } } }
+    ) {
+      edges {
+        next {
+          title
+          slug {
+            current
+          }
+        }
+      }
+    }
+  }
+`

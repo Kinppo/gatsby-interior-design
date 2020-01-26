@@ -1,0 +1,120 @@
+// Variables
+$primary-color: #9e8f86;
+$light-primary-color: #fff3e3;
+$primary-text: #212529;
+$secondary-text: #5c5c5c;
+
+//fonts
+@font-face {
+  font-family: "silk";
+  src: url("../assets/fonts/silktypesilkserifmedium.woff") format("woff");
+}
+@font-face {
+  font-family: "ibm regular";
+  src: url("../assets/fonts/ibmplexsansregular.woff") format("woff");
+}
+@font-face {
+  font-family: "ibm bold";
+  src: url("../assets/fonts/ibmplexsansbold.woff") format("woff");
+}
+//General css
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "ibm regular";
+  line-height: 1.5;
+  box-sizing: content-box;
+  color: #fff;
+  overflow: hidden;
+}
+@media only screen and (max-width: 766px) {
+  body {
+    overflow-y: scroll;
+  }
+  .container-fluid {
+    padding: 0px;
+  }
+}
+ul {
+  list-style: none;
+}
+
+a {
+  color: #fff;
+  font-weight: 500;
+  &:hover {
+    color: #b89b89;
+  }
+}
+h1,
+h2,
+h3 {
+  font-family: "silk";
+}
+h1 {
+  font-size: 4rem;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 2.25rem;
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 1.75rem;
+  font-weight: 400;
+}
+
+h5 {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+h6 {
+  font-size: 1.15rem;
+  font-weight: 300;
+}
+
+p {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+button,
+input,
+textarea {
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+button:not(:disabled) {
+  outline: none;
+}
+.icon {
+  fill: #fff;
+  cursor: pointer;
+  &:hover {
+    fill: $light-primary-color;
+  }
+}
+
+body::-webkit-scrollbar {
+  width: 0.45em;
+  background-color: #f8f9fa;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: $primary-color;
+}
+
+// Custom css
