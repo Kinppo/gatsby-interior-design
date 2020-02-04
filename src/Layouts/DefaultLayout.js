@@ -134,11 +134,11 @@ export default class DefaultLayout extends Component {
   }
   handleScrool(event) {
     console.log(event.deltaY)
-    if (event.deltaY === 100 && this.state.scrollState) {
+    if (event.deltaY > 0 && this.state.scrollState) {
       if (this.state.content !== 3) {
         this.setState({ content: this.state.content + 1, type: "down" })
       }
-    } else if (event.deltaY === -100 && this.state.scrollState) {
+    } else if (event.deltaY < 0 && this.state.scrollState) {
       if (this.state.content !== 0) {
         this.setState({ content: this.state.content - 1, type: "up" })
       }
