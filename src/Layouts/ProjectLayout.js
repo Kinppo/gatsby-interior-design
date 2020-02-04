@@ -12,7 +12,8 @@ const Container = styled.div`
     position: absolute;
     top: 0;
     z-index: 2;
-    right: 2em;
+    right: 0rem;
+    font-family: "ibm regular";
   }
   .showcase {
     color: #fff;
@@ -147,32 +148,13 @@ const Container = styled.div`
 `
 
 export default function ProjectLayout({ data }) {
-  const handleBg = e => {
-    if (-e.nativeEvent.offsetX > -90) {
-      document.querySelector(".showcase").style.backgroundPositionX =
-        -e.nativeEvent.offsetX + "px"
-    }
-    if (-e.nativeEvent.offsetY > -145) {
-      document.querySelector(".showcase").style.backgroundPositionY =
-        -e.nativeEvent.offsetY + "px"
-    }
-  }
-
-  const handleScrool = e => {
-    if (-e.nativeEvent.offsetY > -145) {
-      document.querySelector(".showcase").style.backgroundPositionY =
-        -e.nativeEvent.offsetY + "px"
-    }
-  }
   return (
     <Container>
       <div className="header-wrapper">
-        <Header color="#FFF" />
+        <Header />
       </div>
       <div
         className="showcase"
-        onMouseMove={handleBg}
-        onWheel={handleScrool}
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${data.sanityProject.mainImage.asset.fixed.src})`,
         }}

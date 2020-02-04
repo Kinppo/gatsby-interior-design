@@ -155,6 +155,8 @@ export default class DefaultLayout extends Component {
     this.updateSrollState()
     document.addEventListener("keydown", this.handleKey, false)
     window.addEventListener("resize", this.updateSrollState.bind(this))
+    var myContainer = document.querySelector(".myContainer")
+    myContainer.addEventListener("DOMMouseScroll", this.handleScrool)
   }
   componentWillUnmount() {}
   render() {
@@ -162,7 +164,7 @@ export default class DefaultLayout extends Component {
       <Container
         onWheel={this.handleScrool}
         content={this.state.content}
-        className="container-fluid"
+        className="container-fluid myContainer"
         style={
           this.state.content !== 0 && this.state.scrollState
             ? {

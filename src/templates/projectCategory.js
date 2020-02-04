@@ -2,27 +2,13 @@ import React from "react"
 import Header from "../components/Header"
 import ProjectCategoryLayout from "../Layouts/ProjectCategoryLayout"
 import Seo from "../components/seo"
-import PageTransition from "gatsby-plugin-page-transitions"
 export default function ProjectCategory({ data }) {
   return (
-    <PageTransition
-      defaultStyle={{
-        transition: "left 500ms cubic-bezier(0.47, 0, 0.75, 0.72)",
-        left: "100%",
-        position: "absolute",
-        width: "100%",
-      }}
-      transitionStyles={{
-        entering: { left: "0%" },
-        entered: { left: "0%" },
-        exiting: { left: "100%" },
-      }}
-      transitionTime={100}
-    >
+    <div>
       <Seo title="About" />
       <Header />
       <ProjectCategoryLayout data={data} />
-    </PageTransition>
+    </div>
   )
 }
 
@@ -39,8 +25,8 @@ export const query = graphql`
           }
           mainImage {
             asset {
-              fluid {
-                ...GatsbySanityImageFluid
+              fixed(width: 1920, height: 950) {
+                ...GatsbySanityImageFixed
               }
             }
           }
