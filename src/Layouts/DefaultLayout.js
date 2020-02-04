@@ -11,7 +11,6 @@ import img3 from "../assets/img/img3.jpg"
 import img4 from "../assets/img/img_mobilehome_pillar_01.svg"
 import img5 from "../assets/img/img_mobilehome_pillar_02.svg"
 import img6 from "../assets/img/img_mobilehome_pillar_03.svg"
-
 const Container = styled.div`
   transition: all 1s;
   transition-delay: 1.3s;
@@ -134,6 +133,7 @@ export default class DefaultLayout extends Component {
     }
   }
   handleScrool(event) {
+    console.log(event.deltaY)
     if (event.deltaY === 100 && this.state.scrollState) {
       if (this.state.content !== 3) {
         this.setState({ content: this.state.content + 1, type: "down" })
@@ -155,8 +155,6 @@ export default class DefaultLayout extends Component {
     this.updateSrollState()
     document.addEventListener("keydown", this.handleKey, false)
     window.addEventListener("resize", this.updateSrollState.bind(this))
-    var myContainer = document.querySelector(".myContainer")
-    myContainer.addEventListener("DOMMouseScroll", this.handleScrool)
   }
   componentWillUnmount() {}
   render() {
