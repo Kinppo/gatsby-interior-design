@@ -16,19 +16,19 @@ const Container = styled.div`
     font-family: "ibm regular";
   }
   .showcase {
-    color: #fff;
-    background-size: 2000px;
-    width: 100%;
-    height: 100vh;
-    max-width: 2000px;
-    max-height: 100vh;
+    position: absolute;
+    top: 0;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    margin: 0em;
     z-index: -1;
-    text-align: center;
-    transition: all 3s;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
   }
   h1 {
     text-transform: uppercase;
@@ -70,6 +70,7 @@ const Container = styled.div`
     margin: auto;
     max-width: 700px;
     padding: 10em 0em;
+    margin-top: 100vh;
     h2 {
       padding-left: 1.5em;
     }
@@ -156,11 +157,27 @@ export default function ProjectLayout({ data }) {
       <div
         className="showcase"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${data.sanityProject.mainImage.asset.fixed.src})`,
+          backgroundImage: `url(${data.sanityProject.mainImage.asset.fixed.src})`,
         }}
       >
-        <h1>{data.sanityProject.title}</h1>
-        <p>Explore more</p>
+        <h1
+          className="title"
+          data-sal="slide-up"
+          data-sal-duration="1300"
+          data-sal-delay="300"
+          data-sal-easing="ease"
+        >
+          {data.sanityProject.title}
+        </h1>
+        <p
+          className="title"
+          data-sal="slide-up"
+          data-sal-duration="1300"
+          data-sal-delay="300"
+          data-sal-easing="ease"
+        >
+          Explore more
+        </p>
       </div>
       <div className="description">
         <h2>{data.sanityProject.descriptionTitle}</h2>

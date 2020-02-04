@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import styled from "styled-components"
 import CustomFooter from "../components/CustomFooter"
 import Style from "../style/style"
+import { Link } from "gatsby"
 const Container = styled.div`
   width: 100%;
   color: #333;
@@ -152,8 +153,7 @@ function ProjectCategoryLayout({ data }) {
       height: window.getComputedStyle($this).height,
     }
 
-    document.querySelector(".bg").style.backgroundImage = `none`
-    $fsmActual.style.transition = `all 0.7s`
+    $fsmActual.style.transition = `all 1s`
     $fsmActual.style.backgroundImage = `url(${bg})`
     $fsmActual.style.position = "absolute"
     $fsmActual.style.top = position.top + "px"
@@ -181,13 +181,11 @@ function ProjectCategoryLayout({ data }) {
     setTimeout(function() {
       $fsmActual.classList.remove("growing")
       $fsmActual.classList.add("full-screen")
-    }, 700)
+    }, 1000)
 
     setTimeout(function() {
-      window.location.replace(
-        `https://gatsby-sanity-interior-design.netlify.com/${target}`
-      )
-    }, 700)
+      document.querySelector(`.link-${target}`).click()
+    }, 1000)
   }
 
   useEffect(() => {
@@ -236,6 +234,10 @@ function ProjectCategoryLayout({ data }) {
           <div className="portfolio-cards">
             {data.allSanityProject.edges.map(({ node }) => (
               <div className="fsm portfolio-card">
+                <Link
+                  className={`link-${node.slug.current}`}
+                  to={`/${node.slug.current}`}
+                />
                 <button
                   className={`card-btn ${node.slug.current}`}
                   onClick={() =>

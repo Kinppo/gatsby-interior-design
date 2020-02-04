@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import styled from "styled-components"
-import img1 from "../assets/img/img1.jpg"
-import img2 from "../assets/img/img2.jpg"
+import img1 from "../assets/img/home.jpg"
+import img2 from "../assets/img/kitchen.jpg"
 import icon1 from "../assets/img/icon_scroll_dark.svg"
 
 const Wrapper = styled.div`
