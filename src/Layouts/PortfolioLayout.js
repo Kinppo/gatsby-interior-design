@@ -195,24 +195,28 @@ export default function PortfolioLayout({ data }) {
   }
   var filter = function(value, event) {
     var cards = document.getElementsByClassName("portfolio-card")
+    var activeCards = document.getElementsByClassName(value)
     for (var i = 0; i < cards.length; i++) {
       cards[i].style.transition = `all 0.8s`
       cards[i].style.transform = "scale(0.6)"
       cards[i].style.opacity = "0"
     }
     setTimeout(() => {
-      var cards = document.getElementsByClassName("portfolio-card")
       for (var i = 0; i < cards.length; i++) {
         cards[i].style.display = `none`
       }
-      var activeCards = document.getElementsByClassName(value)
       for (i = 0; i < activeCards.length; i++) {
-        cards[i].style.display = `block`
-        cards[i].style.transition = `all 0.8s`
-        cards[i].style.transform = "scale(1)"
-        cards[i].style.opacity = "1"
+        activeCards[i].style.display = `block`
       }
     }, 800)
+
+    setTimeout(() => {
+      for (i = 0; i < activeCards.length; i++) {
+        activeCards[i].style.transition = `all 0.8s`
+        activeCards[i].style.transform = "scale(1)"
+        activeCards[i].style.opacity = "1"
+      }
+    }, 900)
 
     var dropdowns = document.getElementsByClassName("dropdown-item")
     for (i = 0; i < dropdowns.length; i++) {
