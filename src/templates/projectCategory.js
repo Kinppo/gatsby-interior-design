@@ -23,7 +23,9 @@ export default function ProjectCategory({ data }) {
 
 export const query = graphql`
   query($title: String) {
-    allSanityProject {
+    allSanityProject(
+      filter: { categories: { elemMatch: { title: { eq: $title } } } }
+    ) {
       edges {
         node {
           title
