@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import Style from "../style/style"
@@ -138,11 +138,23 @@ const Container = styled.div`
       height: 110vw;
     }
   }
+  .hidden-item {
+    position: absolute;
+    top: 50px;
+  }
 `
 
 export default function ProjectLayout({ data }) {
+  useEffect(() => {
+    setTimeout(() => {
+      document
+        .querySelector(`.hidden-item`)
+        .scrollIntoView({ block: "start", behavior: "smooth" })
+    }, 1000)
+  })
   return (
     <Container>
+      <h6 className="hidden-item" />
       <div
         className="showcase"
         style={{

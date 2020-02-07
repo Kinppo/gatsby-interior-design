@@ -16,16 +16,6 @@ exports.createPages = async ({ actions, graphql }) => {
           }
         }
       }
-      allSanityCategory {
-        edges {
-          node {
-            title
-            slug {
-              current
-            }
-          }
-        }
-      }
     }
   `)
 
@@ -37,17 +27,6 @@ exports.createPages = async ({ actions, graphql }) => {
       context: {
         slug: project.slug.current,
         cat: project.categories[0].title,
-      },
-    })
-  })
-
-  const category = result.data.allSanityCategory.edges.map(({ node }) => node)
-  category.forEach(category => {
-    actions.createPage({
-      path: category.slug.current,
-      component: path.resolve("src/templates/projectCategory.js"),
-      context: {
-        title: category.title,
       },
     })
   })

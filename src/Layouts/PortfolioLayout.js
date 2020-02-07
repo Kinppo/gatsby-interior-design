@@ -1,24 +1,25 @@
 import React from "react"
 import styled from "styled-components"
-import img1 from "../assets/img/kitchen.jpg"
-import img2 from "../assets/img/bathroom.jpg"
-import img3 from "../assets/img/bedroom.jpg"
-import img4 from "../assets/img/livingroom.jpg"
-import img5 from "../assets/img/diningroom.jpg"
 import Style from "../style/style"
 import CustomFooter from "../components/CustomFooter"
 import { Link } from "gatsby"
+import { Dropdown } from "react-bootstrap"
 const Container = styled.div`
   width: 100%;
   color: #333;
   font-family: "Montserrat", sans-serif;
-  margin-bottom: 10em;
+  .content {
+    max-width: 1700px;
+    margin: auto;
+  }
   .portfolio-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     width: 80%;
     margin: auto;
+    margin-bottom: 15em;
+    margin-top: 6em;
   }
   .title {
     margin-top: 3em;
@@ -59,6 +60,17 @@ const Container = styled.div`
     &:hover {
       color: #333;
     }
+  }
+  .hidden-item {
+    position: absolute;
+    top: 50px;
+  }
+  .fsm {
+    transition: all 0.7s;
+  }
+  .hidden-item-2 {
+    position: absolute;
+    top: 0px;
   }
   button {
     background: transparent;
@@ -107,36 +119,34 @@ const Container = styled.div`
     transform-origin: left bottom;
     background-size: cover;
   }
-  .card-btn-1 {
-    background-image: url(${img1});
+  #fsm_actual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0em;
+    background-size: cover;
+    background-position: center;
   }
-  .card-btn-2 {
-    background-image: url(${img2});
-  }
-  .card-btn-3 {
-    background-image: url(${img3});
-  }
-  .card-btn-4 {
-    background-image: url(${img4});
-  }
-  .card-btn-5 {
-    background-image: url(${img5});
-  }
-  .fsm {
-    transition: all 1s;
-  }
-  .hidden-item {
+  #filter {
     position: absolute;
-    top: 0px;
+    right: 18vw;
+    background: #f2f2f2;
+    border: none;
+    outline: none;
+    color: #000;
+    padding-left: 1em;
+    padding-right: 1em;
   }
+
   @media only screen and (max-width: 500px) {
     h1 {
       font-size: 48px;
     }
   }
 `
-export default function PortfolioLayout() {
-  var openFSM = function(target, loc, number) {
+export default function PortfolioLayout({ data }) {
+  var openFSM = function(target, bg) {
     var $fsmActual = document.getElementById("fsm_actual")
     $fsmActual.style.position = "absolute"
     var position = {}
@@ -147,18 +157,17 @@ export default function PortfolioLayout() {
       width: window.getComputedStyle($this).width,
       height: window.getComputedStyle($this).height,
     }
-
+    document.querySelector(".dpdown").style.zIndex = -1
     $fsmActual.style.transition = `all 1s`
-    $fsmActual.style.backgroundImage = `url(${number})`
+    $fsmActual.style.backgroundImage = `url(${require(`../assets/img/${bg}`)})`
     $fsmActual.style.position = "absolute"
-    $fsmActual.style.zIndex = "1"
     $fsmActual.style.top = position.top + "px"
     $fsmActual.style.left = position.left + "px"
     $fsmActual.style.height = size.height
     $fsmActual.style.width = size.width
     $fsmActual.style.margin = $this.style.margin
 
-    document.querySelector(`.hidden-item`).scrollIntoView()
+    document.querySelector(`.hidden-item-2`).scrollIntoView()
 
     setTimeout(function() {
       $fsmActual.innerHTML = $this.innerHTML
@@ -180,96 +189,96 @@ export default function PortfolioLayout() {
     }, 1000)
 
     setTimeout(function() {
-      document.querySelector(`.${loc}`).click()
+      document.querySelector(`.link-${target}`).click()
     }, 1000)
   }
+  var filter = function(value, event) {
+    var cards = document.getElementsByClassName("portfolio-card")
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].style.transition = `all 0.8s`
+      cards[i].style.transform = "scale(0)"
+    }
+    setTimeout(() => {
+      var cards = document.getElementsByClassName("portfolio-card")
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].style.display = `none`
+      }
+      var activeCards = document.getElementsByClassName(value)
+      for (i = 0; i < activeCards.length; i++) {
+        cards[i].style.display = `block`
+        cards[i].style.transition = `all 0.8s`
+        cards[i].style.transform = "scale(1)"
+      }
+    }, 1100)
 
+    var dropdowns = document.getElementsByClassName("dropdown-item")
+    for (i = 0; i < dropdowns.length; i++) {
+      dropdowns[i].style.color = "#000"
+      dropdowns[i].style.background = "#fff"
+    }
+    event.target.style.background = "#007BFF"
+    event.target.style.color = "#fff"
+  }
   return (
     <div className="warapper">
       <Container className="myContainer">
-        <h6 className="hidden-item"></h6>
+        <h6 className="hidden-item-2" />
+        <h6 className="hidden-item" />
         <div id="fsm_actual" />
         <h1 className="title">PORTFOLIO</h1>
         <h6>Our best work</h6>
-        <div className="portfolio-cards">
-          <div className="fsm portfolio-card">
-            <Link className="link-1" to="./kitchen" />
-            <button
-              className="card-btn card-btn-1"
-              onClick={() => openFSM("card-btn-1", "link-1", img1)}
-            ></button>
-            <div className="portfolio-title">
-              <h4>Kitchens</h4>
-              <hr />
-              <div className="wrap">
-                <p className="old">Photo</p>
-                <p className="new">View Case</p>
+        <Dropdown className="dpdown">
+          <Dropdown.Toggle id="filter">Filter</Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={event => filter("kitchen", event)}>
+              Kitchen
+            </Dropdown.Item>
+            <Dropdown.Item onClick={event => filter("bathroom", event)}>
+              Bathroom
+            </Dropdown.Item>
+            <Dropdown.Item onClick={event => filter("bedroom", event)}>
+              Bedroom
+            </Dropdown.Item>
+            <Dropdown.Item onClick={event => filter("living-room", event)}>
+              Living room
+            </Dropdown.Item>
+            <Dropdown.Item onClick={event => filter("dining-room", event)}>
+              Dining room
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        <div className="content">
+          <div className="portfolio-cards">
+            {data.allSanityProject.edges.map(({ node }) => (
+              <div
+                className={`fsm portfolio-card ${node.categories[0].title
+                  .toLowerCase()
+                  .replace(" ", "-")}`}
+                key={node.title}
+              >
+                <Link
+                  className={`link-${node.slug.current}`}
+                  to={`/${node.slug.current}`}
+                />
+                <button
+                  className={`card-btn ${node.slug.current}`}
+                  onClick={() => openFSM(node.slug.current, node.bgPath)}
+                  style={{
+                    backgroundImage: `url(${require(`../assets/img/${node.bgPath}`)})`,
+                  }}
+                ></button>
+                <div className="portfolio-title">
+                  <h4>{node.title}</h4>
+                  <hr />
+                  <div className="wrap">
+                    <p className="old">Photo</p>
+                    <p className="new">View Case</p>
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-          <div className="fsm portfolio-card">
-            <Link className="link-2" to="./bathroom" />
-            <button
-              className="card-btn card-btn-2"
-              onClick={() => openFSM("card-btn-2", "link-2", img2)}
-            ></button>
-            <div className="portfolio-title">
-              <h4>Bathrooms</h4>
-              <hr />
-              <div className="wrap">
-                <p className="old">Photo</p>
-                <p className="new">View Case</p>
-              </div>
-            </div>
-          </div>
-          <div className="fsm portfolio-card">
-            <Link className="link-3" to="./bedroom" />
-            <button
-              className="card-btn card-btn-3"
-              onClick={() => openFSM("card-btn-3", "link-3", img3)}
-            ></button>
-
-            <div className="portfolio-title">
-              <h4>Bedrooms</h4>
-              <hr />
-              <div className="wrap">
-                <p className="old">Design</p>
-                <p className="new">View Case</p>
-              </div>
-            </div>
-          </div>
-          <div className="fsm portfolio-card">
-            <Link className="link-4" to="./living-room" />
-            <button
-              className="card-btn card-btn-4"
-              onClick={() => openFSM("card-btn-4", "link-4", img4)}
-            ></button>
-
-            <div className="portfolio-title">
-              <h4>Living rooms</h4>
-              <hr />
-              <div className="wrap">
-                <p className="old">Photo</p>
-                <p className="new">View Case</p>
-              </div>
-            </div>
-          </div>
-          <div className="fsm portfolio-card">
-            <Link className="link-5" to="./dining-room" />
-            <button
-              className="card-btn card-btn-5"
-              onClick={() => openFSM("card-btn-5", "link-5", img5)}
-            ></button>
-
-            <div className="portfolio-title">
-              <h4>Dining rooms</h4>
-              <hr />
-              <div className="wrap">
-                <p className="old">Design</p>
-                <p className="new">View Case</p>
-              </div>
-            </div>
-          </div>
+          <Style />
         </div>
       </Container>
       <Style />
