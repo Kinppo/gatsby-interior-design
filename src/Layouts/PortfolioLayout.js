@@ -159,6 +159,7 @@ export default function PortfolioLayout({ data }) {
     }
     document.querySelector(".dpdown").style.zIndex = -1
     $fsmActual.style.transition = `all 1s`
+    $fsmActual.style.zIndex = `2`
     $fsmActual.style.backgroundImage = `url(${require(`../assets/img/${bg}`)})`
     $fsmActual.style.position = "absolute"
     $fsmActual.style.top = position.top + "px"
