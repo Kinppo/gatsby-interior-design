@@ -5,13 +5,13 @@ import Hamburger from "./elements/Hamburger"
 import SideBar from "./SideBar"
 const Container = styled.div`
   ul {
-    margin: 2em 2em 0em 0em;
+    margin: 32px 32px 0em 0em;
   }
   a {
     color: ${props => (props.color ? props.color : "#836755")};
     padding: 0px;
     font-size: 18px;
-    margin: 0em 2em;
+    margin: 0em 32px;
     border-bottom: 1px solid transparent;
     transition: all 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     transition-property: all;

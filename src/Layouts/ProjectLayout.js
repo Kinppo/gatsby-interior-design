@@ -3,18 +3,10 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import Style from "../style/style"
 import { Carousel } from "react-bootstrap"
-import Header from "../components/Header"
 import Image from "gatsby-image"
 const Container = styled.div`
   color: #333;
   font-family: "Montserrat", sans-serif;
-  .header-wrapper {
-    position: absolute;
-    top: 0;
-    z-index: 2;
-    right: 0rem;
-    font-family: "ibm regular";
-  }
   .showcase {
     position: absolute;
     top: 0;
@@ -151,13 +143,10 @@ const Container = styled.div`
 export default function ProjectLayout({ data }) {
   return (
     <Container>
-      <div className="header-wrapper">
-        <Header />
-      </div>
       <div
         className="showcase"
         style={{
-          backgroundImage: `url(${data.sanityProject.mainImage.asset.fixed.src})`,
+          backgroundImage: `url(${require(`../assets/img/${data.sanityProject.bgPath}`)})`,
         }}
       >
         <h1

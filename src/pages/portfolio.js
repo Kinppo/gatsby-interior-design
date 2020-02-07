@@ -7,7 +7,16 @@ export default function Portfolio() {
   return (
     <div>
       <Seo title="About" />
-      <Header />
+      <div
+        style={{
+          position: "absolute",
+          top: "0",
+          zIndex: 10,
+          right: 0,
+        }}
+      >
+        <Header />
+      </div>
       <PortfolioLayout />
     </div>
   )

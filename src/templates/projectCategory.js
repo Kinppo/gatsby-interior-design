@@ -6,7 +6,16 @@ export default function ProjectCategory({ data }) {
   return (
     <div>
       <Seo title="About" />
-      <Header />
+      <div
+        style={{
+          position: "absolute",
+          top: "0",
+          zIndex: 10,
+          right: 0,
+        }}
+      >
+        <Header />
+      </div>
       <ProjectCategoryLayout data={data} />
     </div>
   )
@@ -14,9 +23,7 @@ export default function ProjectCategory({ data }) {
 
 export const query = graphql`
   query($title: String) {
-    allSanityProject(
-      filter: { categories: { elemMatch: { title: { eq: $title } } } }
-    ) {
+    allSanityProject {
       edges {
         node {
           title

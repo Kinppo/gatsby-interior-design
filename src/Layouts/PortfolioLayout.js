@@ -151,6 +151,7 @@ export default function PortfolioLayout() {
     $fsmActual.style.transition = `all 1s`
     $fsmActual.style.backgroundImage = `url(${number})`
     $fsmActual.style.position = "absolute"
+    $fsmActual.style.zIndex = "1"
     $fsmActual.style.top = position.top + "px"
     $fsmActual.style.left = position.left + "px"
     $fsmActual.style.height = size.height

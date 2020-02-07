@@ -21,13 +21,11 @@ const Container = styled.div`
     z-index: 3;
   }
   .bg2 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-      url(${img2});
+    background-image: url(${img2});
     z-index: 2;
   }
   .bg3 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-      url(${img3});
+    background-image: url(${img3});
     z-index: 1;
   }
   .content {

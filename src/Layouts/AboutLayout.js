@@ -3,6 +3,7 @@ import styled from "styled-components"
 import img1 from "../assets/img/home.jpg"
 import img2 from "../assets/img/kitchen.jpg"
 import icon1 from "../assets/img/icon_scroll_dark.svg"
+import Footer from "../components/Footer"
 
 const Wrapper = styled.div`
   transition: all 1s;
@@ -112,7 +113,7 @@ const Wrapper = styled.div`
 export default class AboutLayout extends Component {
   constructor(props) {
     super(props)
-    this.state = { content: 0, type: "down", scroleState: 1 }
+    this.state = { content: 1, type: "down", scroleState: 1 }
     this.handleKey = this.handleKey.bind(this)
     this.handleState = this.handleState.bind(this)
     this.handleScrool = this.handleScrool.bind(this)
@@ -125,26 +126,34 @@ export default class AboutLayout extends Component {
     })
   }
   handleKey(event) {
+    document.removeEventListener("keydown", this.handleKey, false)
     if (event.keyCode === 40 && this.state.scroleState) {
-      if (this.state.content !== 1) {
+      if (this.state.content !== 3) {
         this.setState({ content: this.state.content + 1, type: "down" })
       }
     } else if (event.keyCode === 38 && this.state.scroleState) {
-      if (this.state.content !== 0) {
+      if (this.state.content !== 1) {
         this.setState({ content: this.state.content - 1, type: "up" })
       }
     }
+    setTimeout(() => {
+      document.addEventListener("keydown", this.handleKey, false)
+    }, 300)
   }
   handleScrool(event) {
-    if (event.deltaY === 100 && this.state.scroleState) {
-      if (this.state.content !== 1) {
+    document.removeEventListener("wheel", this.handleScrool, false)
+    if (event.deltaY > 0 && this.state.scroleState) {
+      if (this.state.content !== 3) {
         this.setState({ content: this.state.content + 1, type: "down" })
       }
-    } else if (event.deltaY === -100 && this.state.scroleState) {
-      if (this.state.content !== 0) {
+    } else if (event.deltaY < 0 && this.state.scroleState) {
+      if (this.state.content !== 1) {
         this.setState({ content: this.state.content - 1, type: "up" })
       }
     }
+    setTimeout(() => {
+      document.addEventListener("wheel", this.handleScrool, false)
+    }, 300)
   }
   updateSrollState() {
     if (window.innerWidth <= 766) {
@@ -155,6 +164,7 @@ export default class AboutLayout extends Component {
   }
   componentDidMount() {
     document.addEventListener("keydown", this.handleKey, false)
+    document.addEventListener("wheel", this.handleScrool, false)
     window.addEventListener("resize", this.updateSrollState.bind(this))
     this.updateSrollState()
   }
@@ -162,7 +172,7 @@ export default class AboutLayout extends Component {
   render() {
     return (
       <Wrapper
-        onWheel={this.handleScrool}
+        // onWheel={this.handleScrool}
         content={this.state.content}
         className="container-fluid"
       >
@@ -199,7 +209,7 @@ export default class AboutLayout extends Component {
             <div
               className="left-section left-section-2 p-0"
               style={
-                this.state.content !== 0 && this.state.scroleState
+                this.state.content !== 1 && this.state.scroleState
                   ? {
                       transition: "all 1s",
                       transform: "translateY(calc(-100% - 20px))",
@@ -212,7 +222,7 @@ export default class AboutLayout extends Component {
             <div
               className="right-section right-section-2 p-0"
               style={
-                this.state.content !== 0 && this.state.scroleState
+                this.state.content !== 1 && this.state.scroleState
                   ? {
                       transition: "all 1.5s",
                       transform: "translateY(calc(-100% - 20px) )",
@@ -232,6 +242,11 @@ export default class AboutLayout extends Component {
               </div>
             </div>
           </div>
+          <Footer
+            className="footer-section"
+            content={this.state.content}
+            scrollState={this.state.scroleState}
+          />
         </div>
       </Wrapper>
     )

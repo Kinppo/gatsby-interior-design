@@ -2,10 +2,12 @@ import React from "react"
 import { graphql } from "gatsby"
 import ProjectLayout from "../Layouts/ProjectLayout"
 import Seo from "../components/seo"
+import Header from "../components/Header"
 export default function Project({ data }) {
   return (
     <div>
       <Seo title="About" />
+      <Header />
       <ProjectLayout data={data} />
     </div>
   )
@@ -17,6 +19,7 @@ export const query = graphql`
       title
       descriptionTitle
       description
+      bgPath
       mainImage {
         asset {
           fixed(height: 1080, width: 1960) {

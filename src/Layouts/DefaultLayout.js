@@ -122,6 +122,7 @@ export default class DefaultLayout extends Component {
     })
   }
   handleKey(event) {
+    document.removeEventListener("keydown", this.handleKey, false)
     if (event.keyCode === 40 && this.state.scrollState) {
       if (this.state.content !== 3) {
         this.setState({ content: this.state.content + 1, type: "down" })
@@ -131,9 +132,12 @@ export default class DefaultLayout extends Component {
         this.setState({ content: this.state.content - 1, type: "up" })
       }
     }
+    setTimeout(() => {
+      document.addEventListener("keydown", this.handleKey, false)
+    }, 1100)
   }
   handleScrool(event) {
-    console.log(event.deltaY)
+    document.removeEventListener("wheel", this.handleScrool, false)
     if (event.deltaY > 0 && this.state.scrollState) {
       if (this.state.content !== 3) {
         this.setState({ content: this.state.content + 1, type: "down" })
@@ -143,6 +147,9 @@ export default class DefaultLayout extends Component {
         this.setState({ content: this.state.content - 1, type: "up" })
       }
     }
+    setTimeout(() => {
+      document.addEventListener("wheel", this.handleScrool, false)
+    }, 1100)
   }
   updateSrollState() {
     if (window.innerWidth <= 766) {
@@ -151,16 +158,21 @@ export default class DefaultLayout extends Component {
       this.setState({ scrollState: 1 })
     }
   }
+  componentDidUpdate() {
+    this.props.updateContent(this.state.content)
+    this.props.updateType(this.state.type)
+  }
   componentDidMount() {
     this.updateSrollState()
     document.addEventListener("keydown", this.handleKey, false)
+    document.addEventListener("wheel", this.handleScrool, false)
     window.addEventListener("resize", this.updateSrollState.bind(this))
   }
   componentWillUnmount() {}
   render() {
     return (
       <Container
-        onWheel={this.handleScrool}
+        // onWheel={this.handleScrool}
         content={this.state.content}
         className="container-fluid myContainer"
         style={

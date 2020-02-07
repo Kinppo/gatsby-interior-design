@@ -24,7 +24,12 @@ const Container = styled.div`
 `
 function CustomFooter() {
   return (
-    <Container>
+    <Container
+      data-sal="flip-up"
+      data-sal-duration="500"
+      data-sal-delay="300"
+      data-sal-easing="ease-in-out"
+    >
       <footer className="footer">
         <div className="d-flex footer-flexbox">
           <div className="p-2">
