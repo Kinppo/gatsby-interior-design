@@ -160,7 +160,6 @@ export default function PortfolioLayout({ data }) {
     $fsmActual.style.transition = `all 1s`
     $fsmActual.style.zIndex = `2`
     $fsmActual.style.backgroundImage = `url(${require(`../assets/img/${bg}`)})`
-    console.log(window.pageYOffset + " " + position.top)
     $fsmActual.style.position = "absolute"
     var number = window.pageYOffset + position.top
     $fsmActual.style.top = number + "px"

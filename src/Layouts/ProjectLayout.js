@@ -326,7 +326,9 @@ export default function ProjectLayout({ data }) {
           </Carousel.Item>
         </Carousel>
       </div>
-      {data.allSanityProject.edges[0] ? (
+      {console.log(data.allSanityProject.edges)}
+      {data.allSanityProject.edges[0].next.title !==
+      data.sanityProject.title ? (
         <div className="next-project-link">
           <p>Next Project</p>
           <Link to={data.allSanityProject.edges[0].next.slug.current}>
@@ -334,7 +336,12 @@ export default function ProjectLayout({ data }) {
           </Link>
         </div>
       ) : (
-        ""
+        <div className="next-project-link">
+          <p>Next Project</p>
+          <Link to={data.allSanityProject.edges[1].previous.slug.current}>
+            <h1>{data.allSanityProject.edges[1].previous.title}</h1>
+          </Link>
+        </div>
       )}
 
       <Style />
