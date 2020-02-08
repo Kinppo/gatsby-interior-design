@@ -24,8 +24,8 @@ const Container = styled.div`
     margin-bottom: 0.5rem;
   }
   h5 {
-    color: #9f8575;
-    background-color: rgb(255, 243, 227);
+    color: #7e7158;
+    background-color: #fff7eb;
     padding: 5px 7px;
     margin-bottom: 15px;
     display: inline-block;

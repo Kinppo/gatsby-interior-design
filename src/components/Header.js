@@ -31,6 +31,9 @@ const Container = styled.div`
     outline: none;
     border: none;
   }
+  span {
+    font-size: 1px;
+  }
   @media only screen and (max-width: 650px) {
     .hamburger-item {
       display: block;
@@ -72,6 +75,7 @@ const Header = ({ color }) => {
         <li className="hamburger-item">
           <button className="open-sideBar" onClick={() => openSideBar()}>
             <Hamburger />
+            <span>I</span>
           </button>
         </li>
       </ul>

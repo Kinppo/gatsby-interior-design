@@ -7,7 +7,16 @@ export default function Project({ data }) {
   return (
     <div>
       <Seo title="About" />
-      <Header />
+      <div
+        style={{
+          position: "fixed",
+          top: "0",
+          zIndex: 10,
+          right: 0,
+        }}
+      >
+        <Header />
+      </div>
       <ProjectLayout data={data} />
     </div>
   )

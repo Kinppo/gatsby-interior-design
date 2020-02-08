@@ -9,7 +9,7 @@ export default function Portfolio({ data }) {
       <Seo title="About" />
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "0",
           zIndex: 10,
           right: 0,

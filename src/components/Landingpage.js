@@ -16,7 +16,7 @@ const Container = styled.div`
     z-index: -1;
   }
   .bg1 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
       url(${img1});
     z-index: 3;
   }
@@ -70,7 +70,7 @@ function Landingpage({ content, type, setContent }) {
     <Container>
       <div
         className="content"
-        style={content === 3 ? { opacity: "0", transition: "all 0.5s" } : {}}
+        style={content !== 0 ? { opacity: "0", transition: "all 0.5s" } : {}}
       >
         <h2>
           CREATING AWESOME SPACES

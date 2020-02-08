@@ -60,6 +60,12 @@ const Container = styled.div`
     display: flex;
     justify-content: space-evenly;
   }
+  span {
+    color: #fff;
+  }
+  a:hover {
+    border: 0px !important;
+  }
   svg {
     cursor: pointer;
     fill: #333;
@@ -99,6 +105,7 @@ const SideBar = ({ toggleSideBar, SideBarIsActive }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
+            <span>I</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -113,6 +120,7 @@ const SideBar = ({ toggleSideBar, SideBarIsActive }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
+            <span>I</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -127,6 +135,7 @@ const SideBar = ({ toggleSideBar, SideBarIsActive }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
+            <span>I</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -141,6 +150,7 @@ const SideBar = ({ toggleSideBar, SideBarIsActive }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
+            <span>I</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

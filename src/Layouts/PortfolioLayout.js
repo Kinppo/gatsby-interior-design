@@ -148,7 +148,6 @@ const Container = styled.div`
 export default function PortfolioLayout({ data }) {
   var openFSM = function(target, bg) {
     var $fsmActual = document.getElementById("fsm_actual")
-    $fsmActual.style.position = "absolute"
     var position = {}
     var size = {}
     var $this = document.querySelector(`.${target}`)
@@ -161,14 +160,16 @@ export default function PortfolioLayout({ data }) {
     $fsmActual.style.transition = `all 1s`
     $fsmActual.style.zIndex = `2`
     $fsmActual.style.backgroundImage = `url(${require(`../assets/img/${bg}`)})`
+    console.log(window.pageYOffset + " " + position.top)
     $fsmActual.style.position = "absolute"
-    $fsmActual.style.top = position.top + "px"
+    var number = window.pageYOffset + position.top
+    $fsmActual.style.top = number + "px"
     $fsmActual.style.left = position.left + "px"
     $fsmActual.style.height = size.height
     $fsmActual.style.width = size.width
     $fsmActual.style.margin = $this.style.margin
 
-    document.querySelector(`.hidden-item-2`).scrollIntoView()
+    // document.querySelector(`.hidden-item-2`).scrollIntoView()
 
     setTimeout(function() {
       $fsmActual.innerHTML = $this.innerHTML
@@ -179,7 +180,7 @@ export default function PortfolioLayout({ data }) {
       $fsmActual.classList.add("growing")
       $fsmActual.style.height = "100vh"
       $fsmActual.style.width = "100vw"
-      $fsmActual.style.top = "0"
+      $fsmActual.style.top = window.pageYOffset + "px"
       $fsmActual.style.left = "0"
       $fsmActual.style.margin = "0"
     }, 1)
