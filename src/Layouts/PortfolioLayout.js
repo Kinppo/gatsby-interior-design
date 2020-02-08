@@ -118,6 +118,7 @@ const Container = styled.div`
     transition: all 0.8s;
     transform-origin: left bottom;
     background-size: cover;
+    transition: all 1s;
   }
   #fsm_actual {
     display: flex;
@@ -125,6 +126,10 @@ const Container = styled.div`
     align-items: center;
     flex-direction: column;
     margin: 0em;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -o-transition: all 1s;
   }
   #filter {
     position: absolute;
@@ -150,6 +155,7 @@ export default function PortfolioLayout({ data }) {
     var size = {}
     var $this = document.querySelector(`.${target}`)
     position = $this.getBoundingClientRect()
+    var dist = window.pageYOffset
     size = {
       width: window.getComputedStyle($this).width,
       height: window.getComputedStyle($this).height,
@@ -158,7 +164,7 @@ export default function PortfolioLayout({ data }) {
 
     $fsmActual.style.backgroundSize = `cover`
     $fsmActual.style.backgroundPosition = `center`
-    $fsmActual.style.transition = `all 1s ease-in-out`
+    $fsmActual.style.transition = `all 1s`
     $fsmActual.style.zIndex = `2`
     $fsmActual.style.backgroundImage = `url(${require(`../assets/img/${bg}`)})`
     $fsmActual.style.position = "absolute"
@@ -167,7 +173,6 @@ export default function PortfolioLayout({ data }) {
     $fsmActual.style.left = position.left + "px"
     $fsmActual.style.height = size.height
     $fsmActual.style.width = size.width
-    $fsmActual.style.margin = $this.style.margin
 
     // document.querySelector(`.hidden-item-2`).scrollIntoView()
 
@@ -176,11 +181,11 @@ export default function PortfolioLayout({ data }) {
       for (var i = 0; i < classes.length; i++) {
         $fsmActual.classList.add(classes[i])
       }
+      $fsmActual.style.transition = `all 1s`
       $fsmActual.style.height = "100vh"
       $fsmActual.style.width = "100vw"
-      $fsmActual.style.top = window.pageYOffset + "px"
+      $fsmActual.style.top = dist + "px"
       $fsmActual.style.left = "0"
-      $fsmActual.style.transition = `all 1s ease-in-out`
     }, 1)
 
     setTimeout(function() {

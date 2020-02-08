@@ -109,7 +109,8 @@ button:not(:disabled) {
 }
 
 body::-webkit-scrollbar {
-  width: 0.45em;
+  width: 1px;
+  display: none;
   background-color: #f8f9fa;
 }
 
