@@ -9,16 +9,16 @@ const Container = styled.div`
   color: #333;
   font-family: "Montserrat", sans-serif;
   .content {
-    max-width: 1700px;
+    max-width: 1800px;
     margin: auto;
   }
   .portfolio-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    width: 80%;
+    width: 100%;
     margin: auto;
-    margin-bottom: 15em;
+    margin-bottom: 14em;
     margin-top: 6em;
   }
   .title {
@@ -102,7 +102,7 @@ const Container = styled.div`
   }
   .old,
   .new {
-    transition: transform 0.2s linear;
+    transition: transform 1s linear;
   }
   .portfolio-card:hover .old {
     transform: translateY(-1.2em);
@@ -111,14 +111,11 @@ const Container = styled.div`
     transform: translateY(-2.4em);
   }
   .card-btn {
-    min-width: 330px;
-    width: 30vw;
-    height: 380px;
+    min-width: 350px;
+    width: 37vw;
+    height: 420px;
     margin: 4em 0em;
-    transition: all 0.8s;
-    transform-origin: left bottom;
     background-size: cover;
-    transition: all 1s;
   }
   #fsm_actual {
     display: flex;
@@ -126,14 +123,10 @@ const Container = styled.div`
     align-items: center;
     flex-direction: column;
     margin: 0em;
-    transition: all 1s;
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    -o-transition: all 1s;
   }
   #filter {
     position: absolute;
-    right: 18vw;
+    right: 10vw;
     background: #f2f2f2;
     border: none;
     outline: none;
@@ -147,9 +140,16 @@ const Container = styled.div`
       font-size: 48px;
     }
   }
+  .active {
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+  }
 `
-export default function PortfolioLayout({ data }) {
+export default function PortfolioLayout({ data, hideHeaderBg }) {
   var openFSM = function(target, bg) {
+    hideHeaderBg()
     var $fsmActual = document.getElementById("fsm_actual")
     var position = {}
     var size = {}
@@ -164,28 +164,27 @@ export default function PortfolioLayout({ data }) {
 
     $fsmActual.style.backgroundSize = `cover`
     $fsmActual.style.backgroundPosition = `center`
-    $fsmActual.style.transition = `all 1s`
     $fsmActual.style.zIndex = `2`
     $fsmActual.style.backgroundImage = `url(${require(`../assets/img/${bg}`)})`
     $fsmActual.style.position = "absolute"
     var number = window.pageYOffset + position.top
-    $fsmActual.style.top = number + "px"
-    $fsmActual.style.left = position.left + "px"
     $fsmActual.style.height = size.height
     $fsmActual.style.width = size.width
-
-    // document.querySelector(`.hidden-item-2`).scrollIntoView()
+    $fsmActual.style.top = number + "px"
+    $fsmActual.style.left = position.left + "px"
+    $fsmActual.style.transition = "all 1s"
 
     setTimeout(function() {
       var classes = $this.classList.value.split(" ")
       for (var i = 0; i < classes.length; i++) {
         $fsmActual.classList.add(classes[i])
       }
-      $fsmActual.style.transition = `all 1s`
+      $fsmActual.classList.add("active")
       $fsmActual.style.height = "100vh"
       $fsmActual.style.width = "100vw"
       $fsmActual.style.top = dist + "px"
       $fsmActual.style.left = "0"
+      $fsmActual.style.transition = "all 1s"
     }, 1)
 
     setTimeout(function() {

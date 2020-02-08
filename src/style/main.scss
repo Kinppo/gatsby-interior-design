@@ -108,14 +108,21 @@ button:not(:disabled) {
   }
 }
 
-body::-webkit-scrollbar {
-  width: 1px;
-  display: none;
-  background-color: #f8f9fa;
+@-moz-document url-prefix() {
+  /* Disable scrollbar Firefox */
+  html {
+    scrollbar-width: none;
+  }
 }
-
-body::-webkit-scrollbar-thumb {
-  background-color: $primary-color;
+body {
+  margin: 0; /* remove default margin */
+  scrollbar-width: none; /* Also needed to disable scrollbar Firefox */
+  -ms-overflow-style: none; /* Disable scrollbar IE 10+ */
+  overflow-y: scroll;
+}
+body::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* Disable scrollbar Chrome/Safari/Webkit */
 }
 
 // Custom css

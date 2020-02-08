@@ -4,6 +4,10 @@ import { Link } from "gatsby"
 import Style from "../style/style"
 import { Carousel } from "react-bootstrap"
 import Image from "gatsby-image"
+var Scroll = require("react-scroll")
+var Element = Scroll.Element
+var scroller = Scroll.scroller
+
 const Container = styled.div`
   color: #333;
   font-family: "Montserrat", sans-serif;
@@ -61,7 +65,7 @@ const Container = styled.div`
   .description {
     margin: auto;
     max-width: 700px;
-    padding: 10em 0em;
+    padding: 11em 0em;
     margin-top: 100vh;
     h2 {
       padding-left: 1.5em;
@@ -145,16 +149,18 @@ const Container = styled.div`
 `
 
 export default function ProjectLayout({ data }) {
-  useEffect(() => {
-    setTimeout(() => {
-      document
-        .querySelector(`.hidden-item`)
-        .scrollIntoView({ block: "start", behavior: "smooth" })
-    }, 1000)
-  })
+  setTimeout(() => {
+    scroller.scrollTo("myScrollToElement", {
+      duration: 1000,
+      smooth: true,
+      offset: 130,
+    })
+  }, 1000)
   return (
     <Container>
-      <h6 className="hidden-item" />
+      <div className="hidden-item">
+        <Element name="myScrollToElement"></Element>
+      </div>
       <div
         className="showcase"
         style={{
