@@ -13,7 +13,10 @@ export default function Portfolio({ data }) {
           top: "0",
           zIndex: 10,
           right: 0,
+          width: "100vw",
+          transition: "all 0.5s",
         }}
+        className="project-wrapper"
       >
         <Header />
       </div>

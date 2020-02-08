@@ -326,7 +326,6 @@ export default function ProjectLayout({ data }) {
           </Carousel.Item>
         </Carousel>
       </div>
-      {console.log(data.allSanityProject.edges)}
       {data.allSanityProject.edges[0].next.title !==
       data.sanityProject.title ? (
         <div className="next-project-link">

@@ -66,7 +66,7 @@ const Container = styled.div`
     top: 50px;
   }
   .fsm {
-    transition: all 0.7s;
+    transition: all 1s ease-in;
   }
   .hidden-item-2 {
     position: absolute;
@@ -125,8 +125,6 @@ const Container = styled.div`
     align-items: center;
     flex-direction: column;
     margin: 0em;
-    background-size: cover;
-    background-position: center;
   }
   #filter {
     position: absolute;
@@ -157,7 +155,10 @@ export default function PortfolioLayout({ data }) {
       height: window.getComputedStyle($this).height,
     }
     document.querySelector(".dpdown").style.zIndex = -1
-    $fsmActual.style.transition = `all 1s`
+
+    $fsmActual.style.backgroundSize = `cover`
+    $fsmActual.style.backgroundPosition = `center`
+    $fsmActual.style.transition = `all 1s ease-in-out`
     $fsmActual.style.zIndex = `2`
     $fsmActual.style.backgroundImage = `url(${require(`../assets/img/${bg}`)})`
     $fsmActual.style.position = "absolute"
@@ -171,27 +172,20 @@ export default function PortfolioLayout({ data }) {
     // document.querySelector(`.hidden-item-2`).scrollIntoView()
 
     setTimeout(function() {
-      $fsmActual.innerHTML = $this.innerHTML
       var classes = $this.classList.value.split(" ")
       for (var i = 0; i < classes.length; i++) {
         $fsmActual.classList.add(classes[i])
       }
-      $fsmActual.classList.add("growing")
       $fsmActual.style.height = "100vh"
       $fsmActual.style.width = "100vw"
       $fsmActual.style.top = window.pageYOffset + "px"
       $fsmActual.style.left = "0"
-      $fsmActual.style.margin = "0"
+      $fsmActual.style.transition = `all 1s ease-in-out`
     }, 1)
 
     setTimeout(function() {
-      $fsmActual.classList.remove("growing")
-      $fsmActual.classList.add("full-screen")
-    }, 1000)
-
-    setTimeout(function() {
       document.querySelector(`.link-${target}`).click()
-    }, 1000)
+    }, 1100)
   }
   var filter = function(value, event) {
     var cards = document.getElementsByClassName("portfolio-card")

@@ -13,7 +13,11 @@ export default function Project({ data }) {
           top: "0",
           zIndex: 10,
           right: 0,
+          width: "100vw",
+          paddingBottom: "1.7rem",
+          transition: "all 0.5s",
         }}
+        className="project-wrapper"
       >
         <Header />
       </div>
