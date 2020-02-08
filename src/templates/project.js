@@ -6,20 +6,18 @@ import Header from "../components/Header"
 export default class Project extends Component {
   constructor(props) {
     super(props)
+    this.state = { bgState: 0 }
     this.handleScrolling = this.handleScrolling.bind(this)
   }
   handleScrolling() {
     if (window.pageYOffset >= window.innerHeight) {
-      document.querySelector(".header-wrapper").style.background = "#f2f2f2"
+      this.setState({ bgState: 1 })
     } else {
-      document.querySelector(".header-wrapper").style.background = "transparent"
+      this.setState({ bgState: 0 })
     }
   }
   componentDidMount() {
     document.addEventListener("scroll", this.handleScrolling, false)
-  }
-  componentWillUnmount() {
-    document.removeEventListener("scroll", this.handleScrolling, false)
   }
   render() {
     return (
@@ -34,8 +32,8 @@ export default class Project extends Component {
             width: "100vw",
             paddingBottom: "1.7rem",
             transition: "all 0.5s",
+            background: `${this.state.bgState ? "#f2f2f2" : "transparent"}`,
           }}
-          className="header-wrapper"
         >
           <Header />
         </div>

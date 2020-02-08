@@ -4,5 +4,9 @@ export default () => (
     body {
       overflow-y: visible;
     }
+    .tl-edges {
+      height: 100%;
+      overflow: visible;
+    }
   `}</style>
 )

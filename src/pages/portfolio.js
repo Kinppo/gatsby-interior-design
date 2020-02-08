@@ -6,27 +6,12 @@ import Seo from "../components/seo"
 export default class Portfolio extends Component {
   constructor(props) {
     super(props)
-    this.handleScrolling = this.handleScrolling.bind(this)
+    this.state = { bgState: 1 }
     this.hideHeaderBg = this.hideHeaderBg.bind(this)
   }
-  handleScrolling() {
-    if (window.pageYOffset >= 100) {
-      document.querySelector(".project-wrapper").style.background = "#f2f2f2"
-    } else {
-      document.querySelector(".project-wrapper").style.background =
-        "transparent"
-    }
-  }
   hideHeaderBg() {
-    document.querySelector(".project-wrapper").style.background = "transparent"
+    this.setState({ bgState: 0 })
   }
-  componentDidMount() {
-    document.addEventListener("scroll", this.handleScrolling, false)
-  }
-  componentWillUnmount() {
-    document.removeEventListener("scroll", this.handleScrolling, false)
-  }
-
   render() {
     return (
       <div>
@@ -40,8 +25,8 @@ export default class Portfolio extends Component {
             width: "100vw",
             transition: "all 0.5s",
             paddingBottom: "1.7em",
+            background: `${this.state.bgState ? "#fff" : "transparent"}`,
           }}
-          className="project-wrapper"
         >
           <Header />
         </div>

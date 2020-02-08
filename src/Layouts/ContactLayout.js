@@ -122,14 +122,7 @@ const ContactLayout = () => {
     <Wrapper>
       <Container fluid={true} className="p-0 contact-main-container">
         <div className="d-flex flex-wrap contact-main-col-down">
-          <Col
-            md={8}
-            className="p-0 contact-intro-img"
-            data-sal="slide-up"
-            data-sal-duration="800"
-            data-sal-delay="300"
-            data-sal-easing="ease-in-out"
-          >
+          <Col md={8} className="p-0 contact-intro-img">
             <div className="contact-left-image">
               <div className="contact-questiontext">
                 <h2>
@@ -151,15 +144,7 @@ const ContactLayout = () => {
               </div>
             </div>
           </Col>
-          <Col
-            md={4}
-            sm={12}
-            className="p-0 contact-team-col"
-            data-sal="slide-up"
-            data-sal-duration="400"
-            data-sal-delay="850"
-            data-sal-easing="ease-in-out"
-          >
+          <Col md={4} sm={12} className="p-0 contact-team-col">
             <h1>Our Team</h1>
             <div className="team-div d-flex flex-wrap  justify-content-between">
               <Col className="contact-team">

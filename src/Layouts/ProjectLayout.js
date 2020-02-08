@@ -1,18 +1,14 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import Style from "../style/style"
 import { Carousel } from "react-bootstrap"
 import Image from "gatsby-image"
-var Scroll = require("react-scroll")
-var Element = Scroll.Element
-var scroller = Scroll.scroller
-
 const Container = styled.div`
   color: #333;
+  background: #fff;
   font-family: "Montserrat", sans-serif;
   .showcase {
-    position: absolute;
     top: 0;
     display: flex;
     justify-content: center;
@@ -21,7 +17,7 @@ const Container = styled.div`
     width: 100vw;
     height: 100vh;
     margin: 0em;
-    z-index: -1;
+    z-index: 1;
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -63,10 +59,10 @@ const Container = styled.div`
     }
   }
   .description {
+    z-index: 2;
     margin: auto;
     max-width: 700px;
-    padding: 11em 0em;
-    margin-top: 100vh;
+    padding: 10em 0em;
     h2 {
       padding-left: 1.5em;
     }
@@ -149,18 +145,23 @@ const Container = styled.div`
 `
 
 export default function ProjectLayout({ data }) {
-  setTimeout(() => {
-    scroller.scrollTo("myScrollToElement", {
-      duration: 1000,
-      smooth: true,
-      offset: 130,
-    })
-  }, 1000)
+  const [param, setParam] = useState(1)
+  useEffect(() => {
+    setTimeout(() => {
+      if (param) {
+        document.querySelector("#cont").scrollBy({
+          top: 150,
+          behavior: "smooth",
+        })
+      }
+    }, 1000)
+    setTimeout(() => {
+      setParam(0)
+    }, 1500)
+  })
   return (
-    <Container>
-      <div className="hidden-item">
-        <Element name="myScrollToElement"></Element>
-      </div>
+    <Container className="portfolioContainer" id="cont">
+      <h6 className="hidden-item" />
       <div
         className="showcase"
         style={{
@@ -348,8 +349,6 @@ export default function ProjectLayout({ data }) {
           </Link>
         </div>
       )}
-
-      <Style />
     </Container>
   )
 }

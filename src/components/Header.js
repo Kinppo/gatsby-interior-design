@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { Link } from "gatsby"
 import Hamburger from "./elements/Hamburger"
 import SideBar from "./SideBar"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 const Container = styled.div`
   ul {
     margin: 32px 32px 0em 0em;
@@ -53,24 +53,48 @@ const Header = ({ color }) => {
     <Container className="container-fluid header" color={color}>
       <ul className="nav justify-content-end">
         <li className="nav-item">
-          <Link to="/" className="nav-link active">
+          <AniLink
+            paintDrip
+            hex="#fff7eb"
+            to="/"
+            duration={1}
+            className="nav-link active"
+          >
             Home
-          </Link>
+          </AniLink>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="./portfolio">
+          <AniLink
+            paintDrip
+            hex="#fff7eb"
+            to="portfolio"
+            duration={1}
+            className="nav-link active"
+          >
             Works
-          </Link>
+          </AniLink>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="./about">
-            About
-          </Link>
+          <AniLink
+            paintDrip
+            hex="#fff7eb"
+            to="about"
+            duration={1}
+            className="nav-link active"
+          >
+            about
+          </AniLink>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="./contact">
+          <AniLink
+            paintDrip
+            hex="#fff7eb"
+            to="contact"
+            duration={1}
+            className="nav-link active"
+          >
             Contact
-          </Link>
+          </AniLink>
         </li>
         <li className="hamburger-item">
           <button className="open-sideBar" onClick={() => openSideBar()}>

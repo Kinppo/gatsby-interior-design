@@ -5,7 +5,6 @@ import CustomFooter from "../components/CustomFooter"
 import { Link } from "gatsby"
 import { Dropdown } from "react-bootstrap"
 const Container = styled.div`
-  width: 100%;
   color: #333;
   font-family: "Montserrat", sans-serif;
   .content {
@@ -226,7 +225,7 @@ export default function PortfolioLayout({ data, hideHeaderBg }) {
   }
   return (
     <div className="warapper">
-      <Container className="myContainer">
+      <Container className="portfolioContainer">
         <h6 className="hidden-item-2" />
         <h6 className="hidden-item" />
         <div id="fsm_actual" />
@@ -283,11 +282,9 @@ export default function PortfolioLayout({ data, hideHeaderBg }) {
               </div>
             ))}
           </div>
-          <Style />
         </div>
+        <CustomFooter />
       </Container>
-      <Style />
-      <CustomFooter />
     </div>
   )
 }
