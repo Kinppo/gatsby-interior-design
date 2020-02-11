@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `MF`,
     description: `Metro Floring & Interior Design`,
-    author: `Mouaad Boukiaou`,
+    author: ``,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
