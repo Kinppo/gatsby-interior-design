@@ -145,3 +145,16 @@ body::-webkit-scrollbar {
 .portfolioContainer::-webkit-scrollbar {
   display: none;
 }
+
+@media only screen and (max-width: 766px) {
+  .tl-edges {
+    height: 100vh;
+    overflow-y: scroll;
+  }
+  .tl-edges::-webkit-scrollbar {
+    display: none;
+  }
+  .content-text {
+    padding: 10em 5%;
+  }
+}

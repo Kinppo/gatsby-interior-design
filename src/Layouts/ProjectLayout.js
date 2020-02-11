@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
-import Style from "../style/style"
+import Fade from "react-reveal/Fade"
 import { Carousel } from "react-bootstrap"
 import Image from "gatsby-image"
 const Container = styled.div`
@@ -58,11 +58,22 @@ const Container = styled.div`
       }
     }
   }
+  .desc-overlay {
+    position: absolute !important;
+    width: 100%;
+    height: 120%;
+    top: 0;
+    background: #fff;
+    transition: height 1.5s;
+    transform: rotate(1deg);
+  }
   .description {
     z-index: 2;
-    margin: auto;
+    margin: 10em auto;
     max-width: 700px;
-    padding: 10em 0em;
+    div {
+      position: relative;
+    }
     h2 {
       padding-left: 1.5em;
     }
@@ -158,7 +169,22 @@ export default function ProjectLayout({ data }) {
     setTimeout(() => {
       setParam(0)
     }, 1500)
+    document
+      .querySelector(".portfolioContainer")
+      .addEventListener("scroll", e => {
+        console.log(document.querySelector(".description").scrollTop)
+        console.log(
+          document.querySelector(".description").getBoundingClientRect()
+        )
+      })
   })
+
+  var cards = document.getElementsByClassName("desc-overlay")
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].style.transform = "translateY(100%)"
+    cards[i].style.transition = `all 1.5s`
+  }
+
   return (
     <Container className="portfolioContainer" id="cont">
       <h6 className="hidden-item" />
@@ -169,27 +195,33 @@ export default function ProjectLayout({ data }) {
         }}
       >
         <h1
-          className="title"
           data-sal="slide-up"
           data-sal-duration="1300"
-          data-sal-delay="300"
+          data-sal-delay="100"
           data-sal-easing="ease"
+          className="title"
         >
           {data.sanityProject.title}
         </h1>
         <p
-          className="title"
           data-sal="slide-up"
           data-sal-duration="1300"
           data-sal-delay="300"
           data-sal-easing="ease"
+          className="title"
         >
           Explore more
         </p>
       </div>
       <div className="description">
-        <h2>{data.sanityProject.descriptionTitle}</h2>
-        <p>{data.sanityProject.description}</p>
+        <div>
+          <div className="desc-overlay" />
+          <h2>{data.sanityProject.descriptionTitle}</h2>
+        </div>
+        <div>
+          <div className="desc-overlay" />
+          <p>{data.sanityProject.description}</p>
+        </div>
       </div>
       <div className="img-carousel">
         <Carousel controls={false} interval={8000} className="carousel-1">
@@ -336,17 +368,21 @@ export default function ProjectLayout({ data }) {
       {data.allSanityProject.edges[0].next.title !==
       data.sanityProject.title ? (
         <div className="next-project-link">
-          <p>Next Project</p>
-          <Link to={data.allSanityProject.edges[0].next.slug.current}>
-            <h1>{data.allSanityProject.edges[0].next.title}</h1>
-          </Link>
+          <Fade bottom>
+            <p>Next Project</p>
+            <Link to={data.allSanityProject.edges[0].next.slug.current}>
+              <h1>{data.allSanityProject.edges[0].next.title}</h1>
+            </Link>
+          </Fade>
         </div>
       ) : (
         <div className="next-project-link">
-          <p>Next Project</p>
-          <Link to={data.allSanityProject.edges[1].previous.slug.current}>
-            <h1>{data.allSanityProject.edges[1].previous.title}</h1>
-          </Link>
+          <Fade bottom>
+            <p>Next Project</p>
+            <Link to={data.allSanityProject.edges[1].previous.slug.current}>
+              <h1>{data.allSanityProject.edges[1].previous.title}</h1>
+            </Link>
+          </Fade>
         </div>
       )}
     </Container>

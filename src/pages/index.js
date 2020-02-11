@@ -14,30 +14,34 @@ export default function IndexPage() {
       <Seo title="Home" />
       <div
         style={
-          content === 1 && type === "down"
+          content === 0
             ? {
-                display: "none",
+                display: "block",
               }
             : {
-                display: "block",
+                display: "none",
               }
         }
       >
-        <Header />
+        <Header logo="white" />
       </div>
       <div
         style={
-          content === 1 && type === "down"
+          content !== 0
             ? {
                 position: "relative",
                 opacity: 1,
                 transition: "all 1s",
-                transitionDelay: "0.5s",
-                transform: "translateY(0px)",
+                transitionDelay: "1.5s",
+                transform: "translateY(10px)",
+                padding: "0.1em 0em 3em 0em",
+                background: "#fff",
+                width: "100%",
               }
             : {
                 opacity: 0,
-                transform: "translateY(-30px)",
+                position: "absolute",
+                transform: "translateY(-100px)",
               }
         }
       >

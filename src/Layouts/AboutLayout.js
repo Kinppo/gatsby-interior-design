@@ -138,7 +138,7 @@ export default class AboutLayout extends Component {
     }
     setTimeout(() => {
       document.addEventListener("keydown", this.handleKey, false)
-    }, 300)
+    }, 1000)
   }
   handleScrool(event) {
     document.removeEventListener("wheel", this.handleScrool, false)
@@ -153,7 +153,7 @@ export default class AboutLayout extends Component {
     }
     setTimeout(() => {
       document.addEventListener("wheel", this.handleScrool, false)
-    }, 300)
+    }, 1000)
   }
   updateSrollState() {
     if (window.innerWidth <= 766) {

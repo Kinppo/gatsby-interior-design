@@ -4,8 +4,12 @@ import Hamburger from "./elements/Hamburger"
 import SideBar from "./SideBar"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100vw;
   ul {
-    margin: 32px 32px 0em 0em;
+    margin: 30px 32px 0em 0em;
   }
   a {
     color: ${props => (props.color ? props.color : "#836755")};
@@ -34,6 +38,15 @@ const Container = styled.div`
   span {
     font-size: 1px;
   }
+  .logo {
+    height: 45px;
+    width: 350px;
+    margin-top: 22px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
   @media only screen and (max-width: 650px) {
     .hamburger-item {
       display: block;
@@ -42,15 +55,31 @@ const Container = styled.div`
       display: none;
     }
   }
+  @media only screen and (max-height: 770px) {
+    ul {
+      margin: 20px 32px 0em 0em;
+    }
+  }
 `
 
-const Header = ({ color }) => {
+const Header = ({ color, logo }) => {
   const [SideBarIsActive, toggleSideBar] = useState(false)
   const openSideBar = () => {
     toggleSideBar(true)
   }
   return (
     <Container className="container-fluid header" color={color}>
+      <ul className="logo">
+        {logo ? (
+          <img src={require(`../assets/img/${logo} logo.png`)} />
+        ) : (
+          <img src={require("../assets/img/dark logo.png")} />
+        )}
+      </ul>
+      <SideBar
+        toggleSideBar={toggleSideBar}
+        SideBarIsActive={SideBarIsActive}
+      />
       <ul className="nav justify-content-end">
         <li className="nav-item">
           <AniLink
@@ -103,10 +132,6 @@ const Header = ({ color }) => {
           </button>
         </li>
       </ul>
-      <SideBar
-        toggleSideBar={toggleSideBar}
-        SideBarIsActive={SideBarIsActive}
-      />
     </Container>
   )
 }

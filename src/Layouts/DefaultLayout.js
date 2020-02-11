@@ -179,11 +179,11 @@ export default class DefaultLayout extends Component {
           this.state.content !== 0 && this.state.scrollState
             ? {
                 transition: "all 1s",
-                marginTop: "8vh",
+                marginTop: "10vh",
                 marginLeft: "1vw",
                 marginRight: "1vw",
                 width: "98vw",
-                height: "90vh",
+                height: "88vh",
               }
             : {}
         }

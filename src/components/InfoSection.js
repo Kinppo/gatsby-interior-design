@@ -53,6 +53,16 @@ const Container = styled.div`
       font-size: 14px;
     }
   }
+  @media only screen and (max-height: 800px) {
+    h6 {
+      font-size: 16px;
+      line-height: 1.5em;
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.5em;
+    }
+  }
   @media only screen and (max-width: 1000px) {
     p {
       display: none;

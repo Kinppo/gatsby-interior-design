@@ -16,8 +16,7 @@ const Container = styled.div`
     z-index: -1;
   }
   .bg1 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-      url(${img1});
+    background-image: url(${img1});
     z-index: 3;
   }
   .bg2 {
@@ -63,6 +62,15 @@ const Container = styled.div`
       font-size: 18px;
     }
   }
+  .bg-overlay {
+    position: absolute;
+    background: #000;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    pointer-events: none;
+  }
 `
 
 function Landingpage({ content, type, setContent }) {
@@ -93,7 +101,18 @@ function Landingpage({ content, type, setContent }) {
               ? { height: "0%", transition: "all 1s", transitionDelay: "1s" }
               : {}
           }
-        />
+        >
+          <div
+            className="bg-overlay"
+            style={
+              content !== 0
+                ? {
+                    display: "none",
+                  }
+                : {}
+            }
+          ></div>
+        </div>
         <div
           className="bg bg2"
           style={

@@ -96,13 +96,7 @@ const Container = styled.div`
 `
 function Footer({ content, scrollState }) {
   return (
-    <Container
-      style={
-        content !== 3 && scrollState
-          ? { transform: "translateY(112%)", transition: "all 1s" }
-          : {}
-      }
-    >
+    <Container>
       <div
         className="footer footer1"
         style={
