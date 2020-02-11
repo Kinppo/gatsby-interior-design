@@ -34,7 +34,7 @@ export default function IndexPage() {
                 transition: "all 1s",
                 transitionDelay: "1.5s",
                 transform: "translateY(10px)",
-                padding: "0.1em 0em 3em 0em",
+                padding: "0.1em 0em 1.5em 0em",
                 background: "#fff",
                 width: "100%",
               }

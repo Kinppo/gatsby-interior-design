@@ -66,6 +66,9 @@ const Header = ({ color, logo }) => {
   const openSideBar = () => {
     toggleSideBar(true)
   }
+  const activeStyle = {
+    borderBottom: "1px",
+  }
   return (
     <Container className="container-fluid header" color={color}>
       <ul className="logo">
@@ -87,6 +90,7 @@ const Header = ({ color, logo }) => {
             to="/"
             duration={1}
             className="nav-link active"
+            activeStyle={activeStyle}
           >
             Home
           </AniLink>
@@ -98,6 +102,7 @@ const Header = ({ color, logo }) => {
             to="portfolio"
             duration={1}
             className="nav-link active"
+            activeStyle={activeStyle}
           >
             Works
           </AniLink>
