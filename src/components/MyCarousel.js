@@ -30,7 +30,7 @@ function MyCarousel({ content, type }) {
       top: 0;
       width: 100%;
       height: 100%;
-      opacity: 0.5;
+      opacity: 0.4;
       pointer-events: none;
       transition: transform 1s;
     }
@@ -60,7 +60,7 @@ function MyCarousel({ content, type }) {
         style={
           content === 0 && type === "down"
             ? {
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${img2})`,
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${img2})`,
                 zIndex: "1",
               }
             : { background: "#fff" }

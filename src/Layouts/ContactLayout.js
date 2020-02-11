@@ -100,6 +100,14 @@ const Wrapper = styled.div`
   .contact-rank {
     margin-top: 20px;
   }
+  @media only screen and (max-width: 1300px) {
+    h2 {
+      font-size: 28px !important;
+    }
+    h6 {
+      font-size: 16px;
+    }
+  }
   @media only screen and (max-width: 766px) {
     .contact-left-image {
       height: 55vh;
