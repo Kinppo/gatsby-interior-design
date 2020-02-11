@@ -47,17 +47,16 @@ const Container = styled.div`
       height: 100%;
     }
   }
-  @media only screen and (max-width: 650px) {
+  @media only screen and (max-width: 910px) {
     .hamburger-item {
       display: block;
     }
     .nav-item {
       display: none;
     }
-  }
-  @media only screen and (max-height: 770px) {
-    ul {
-      margin: 20px 32px 0em 0em;
+    .logo {
+      width: 300px;
+      height: 40px;
     }
   }
 `
@@ -128,7 +127,6 @@ const Header = ({ color, logo }) => {
         <li className="hamburger-item">
           <button className="open-sideBar" onClick={() => openSideBar()}>
             <Hamburger />
-            <span>I</span>
           </button>
         </li>
       </ul>

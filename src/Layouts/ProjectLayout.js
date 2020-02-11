@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import Fade from "react-reveal/Fade"
 import { Carousel } from "react-bootstrap"
 import Image from "gatsby-image"
+import { useInView } from "react-intersection-observer"
 const Container = styled.div`
   color: #333;
   background: #fff;
@@ -69,7 +70,7 @@ const Container = styled.div`
   }
   .description {
     z-index: 2;
-    margin: 10em auto;
+    margin: 12em auto;
     max-width: 700px;
     div {
       position: relative;
@@ -157,7 +158,17 @@ const Container = styled.div`
 
 export default function ProjectLayout({ data }) {
   const [param, setParam] = useState(1)
+  const [ref1, inView1] = useInView({
+    threshold: 0,
+  })
+  const [ref2, inView2] = useInView({
+    threshold: 0,
+  })
   useEffect(() => {
+    setTimeout(() => {
+      setParam(0)
+    }, 1500)
+
     setTimeout(() => {
       if (param) {
         document.querySelector("#cont").scrollBy({
@@ -166,24 +177,25 @@ export default function ProjectLayout({ data }) {
         })
       }
     }, 1000)
-    setTimeout(() => {
-      setParam(0)
-    }, 1500)
-    document
-      .querySelector(".portfolioContainer")
-      .addEventListener("scroll", e => {
-        console.log(document.querySelector(".description").scrollTop)
-        console.log(
-          document.querySelector(".description").getBoundingClientRect()
-        )
-      })
-  })
 
-  var cards = document.getElementsByClassName("desc-overlay")
-  for (var i = 0; i < cards.length; i++) {
-    cards[i].style.transform = "translateY(100%)"
-    cards[i].style.transition = `all 1.5s`
-  }
+    if (inView1) {
+      document.querySelector(".desc-overlay-1").style.transform =
+        "translateY(100%)"
+      document.querySelector(".desc-overlay-1").style.transition = `all 1.5s`
+    }
+    if (inView2) {
+      document.querySelector(".desc-overlay-2").style.transform =
+        "translateY(100%)"
+      document.querySelector(".desc-overlay-2").style.transition = `all 2.5s`
+    }
+
+    // document
+    //   .querySelector(".portfolioContainer")
+    //   .addEventListener("scroll", e => {
+    //     console.log(document.querySelector(".portfolioContainer").scrollTop)
+    //     console.log(document.querySelector(".description").scrollTop)
+    //   })
+  })
 
   return (
     <Container className="portfolioContainer" id="cont">
@@ -215,11 +227,11 @@ export default function ProjectLayout({ data }) {
       </div>
       <div className="description">
         <div>
-          <div className="desc-overlay" />
+          <div className="desc-overlay desc-overlay-1" ref={ref1} />
           <h2>{data.sanityProject.descriptionTitle}</h2>
         </div>
         <div>
-          <div className="desc-overlay" />
+          <div className="desc-overlay desc-overlay-2" ref={ref2} />
           <p>{data.sanityProject.description}</p>
         </div>
       </div>

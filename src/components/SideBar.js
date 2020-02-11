@@ -89,13 +89,13 @@ const SideBar = ({ toggleSideBar, SideBarIsActive }) => {
           <Link to="/">
             <p>Home</p>
           </Link>
-          <Link to="./portfolio">
+          <Link to="/portfolio">
             <p>Works</p>
           </Link>
-          <Link to="./about">
+          <Link to="/about">
             <p>About</p>
           </Link>
-          <Link to="./contact">
+          <Link to="/contact">
             <p>Contact</p>
           </Link>
         </div>
